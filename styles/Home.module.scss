@@ -40,7 +40,7 @@
   }
 }
 
-@for $i from 1 through 75 {
+@for $i from 1 through 100 {
   .circleOnLight:nth-child(#{$i}) {
     --size: #{random(5) * 0.2}vw;
     --left-ini: #{random(20) - 10}vw;
@@ -139,6 +139,10 @@
   background-color: transparent;
 }
 
+.card:hover {
+  cursor: none;
+}
+
 .cardInner {
   position: relative;
   text-align: center;
@@ -153,6 +157,8 @@
   background-color: rgba(255,255,255,0.2);
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   color: black;  
 }
 
@@ -165,7 +171,7 @@
 }
 
 .cardFront, .cardBack {
-  min-height: 20vw;
+  min-height: 18vw;
   height: 100%;
   width: 100%;
   -webkit-backface-visibility: hidden;
@@ -173,10 +179,10 @@
   padding: 1rem;
 }
 
-.card:hover .cardInner {
-  // transform: rotateY(180deg);
-  background-color: rgb(70, 0, 70);
-}
+// .card:hover .cardInner {
+//   // transform: rotateY(180deg);
+//   background-color: rgb(70, 0, 70);
+// }
 
 /* .card:hover,
 .card:focus,
@@ -187,7 +193,7 @@
 .cardFront h2 {
   margin: 0 0 8px 0;
   font-size: 2rem;
-  text-align: left;
+  text-align: center;
   color: white;
 }
 
@@ -198,12 +204,12 @@
 }
 
 .pokeball {
-  height: 50px !important;
-  width: 50px !important;
+  position: absolute;
+  height: 25px !important;
+  width: 25px !important;
   background-image: url(../images/pokeball.png);
   background-size: cover;
-  margin-top: 6px;
-  align-self: center !important;
+  margin-top: -80px;
 }
 
 @media (max-width: 600px) {
