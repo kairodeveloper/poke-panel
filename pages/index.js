@@ -22,8 +22,8 @@ export default function Home() {
 
   function handleMouseMove(e) {
     setMousePosition({
-      left: e.screenX,
-      top: e.screenY
+      left: e.pageX,
+      top: e.pageY
     })
   }
 
@@ -36,7 +36,8 @@ export default function Home() {
   }
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container}
+      onMouseMove={handleMouseMove}>
       {getCircles(30)}
       <Head>
         <title>Create Next App</title>
@@ -47,9 +48,16 @@ export default function Home() {
       <main className={styles.main}>
         <div className={styles.pokeball}
           style={{
-            display: ShowPokeball ? "block" : "none",
-            top: MousePosition.top,
-            left: MousePosition.left
+            top: MousePosition.top + 'px',
+            left: MousePosition.left + 'px',
+            display: ShowPokeball ? "none" : "block"
+          }}
+        />
+        <div className={styles.pokeballSpin}
+          style={{
+            top: MousePosition.top + 'px',
+            left: MousePosition.left + 'px',
+            display: ShowPokeball ? "block" : "none"
           }}
         />
         <Image src={logo} alt={"logo"} width={300} height={100} />
@@ -57,11 +65,13 @@ export default function Home() {
         <code className={styles.code}>A simple page to show pokemon cards!</code>
 
         <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" id={styles.leftCard} className={styles.card}>
-            <div className={styles.cardInner}
-              onMouseEnter={handleOnEnter}
-              onMouseLeave={handleOnLeave}
-              onMouseMove={handleMouseMove}>
+          <a href="https://nextjs.org/docs"
+            id={styles.leftCard}
+            className={styles.card}
+            onMouseMove={handleOnEnter}
+            onMouseEnter={handleOnEnter}
+            onMouseOut={handleOnLeave}>
+            <div className={styles.cardInner}>
               <div className={styles.cardFront}>
                 <h2>go to the cards &rarr;</h2>
               </div>
@@ -70,9 +80,9 @@ export default function Home() {
 
           <a href="https://nextjs.org/learn" id={styles.rightCard} className={styles.card}>
             <div className={styles.cardInner}
+              onMouseMove={handleOnEnter}
               onMouseEnter={handleOnEnter}
-              onMouseLeave={handleOnLeave}
-              onMouseMove={handleMouseMove}>
+              onMouseOut={handleOnLeave}>
               <div className={styles.cardFront}>
                 <h2>learn more about the API &rarr;</h2>
               </div>
@@ -90,6 +100,6 @@ export default function Home() {
           developed by Kairo Emannoel
         </a>
       </footer>
-    </div>
+    </div >
   )
 }
